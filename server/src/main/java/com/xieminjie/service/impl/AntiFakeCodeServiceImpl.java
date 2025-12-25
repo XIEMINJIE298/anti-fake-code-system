@@ -351,7 +351,7 @@ public class AntiFakeCodeServiceImpl implements AntiFakeCodeService {
             int pictureIdx = wb.addPicture(bytes, Workbook.PICTURE_TYPE_PNG);
 
             // 锚点：第7列（G列），rowIndex行，适度缩放
-            XSSFClientAnchor anchor = new XSSFClientAnchor(0, 0, 0, 0, 6, rowIndex, 7, rowIndex + 1);
+            XSSFClientAnchor anchor = new XSSFClientAnchor(0, 0, 0, 0, 7, rowIndex, 8, rowIndex + 1);
             drawing.createPicture(anchor, pictureIdx);
 
             wb.write(fos);

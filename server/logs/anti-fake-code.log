@@ -284,3 +284,5 @@ java.lang.IllegalArgumentException: Invalid character found in method name [0x16
 2025-12-25T23:38:06.133+08:00  INFO 74748 --- [server] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
 2025-12-25T23:38:06.135+08:00  INFO 74748 --- [server] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 2 ms
 2025-12-25T23:38:06.173+08:00  WARN 74748 --- [server] [http-nio-8080-exec-1] .w.s.m.s.DefaultHandlerExceptionResolver : Resolved [org.springframework.web.HttpRequestMethodNotSupportedException: Request method 'GET' is not supported]
+2025-12-25T23:46:08.179+08:00  INFO 74748 --- [server] [SpringApplicationShutdownHook] o.s.b.w.e.tomcat.GracefulShutdown        : Commencing graceful shutdown. Waiting for active requests to complete
+2025-12-25T23:46:08.189+08:00  INFO 74748 --- [server] [tomcat-shutdown] o.s.b.w.e.tomcat.GracefulShutdown        : Graceful shutdown complete
