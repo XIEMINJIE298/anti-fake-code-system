@@ -77,6 +77,12 @@
             <artifactId>javase</artifactId>
             <version>3.5.2</version>
         </dependency>
+        <!-- 替掉原来的版本号 -->
+        <dependency>
+            <groupId>com.github.whvcse</groupId>
+            <artifactId>easy-captcha</artifactId>
+            <version>1.6.2</version>
+        </dependency>
     </dependencies>
 
     <build>
@@ -88,4 +94,11 @@
         </plugins>
     </build>
 
+    <!-- 在 pom.xml 里新增仓库 -->
+    <repositories>
+        <repository>
+            <id>jitpack</id>
+            <url>https://jitpack.io</url>
+        </repository>
+    </repositories>
 </project>

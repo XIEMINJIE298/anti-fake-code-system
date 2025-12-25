@@ -17,3 +17,8 @@ export const uploadExcel = (file) => {
 export const verifyCode = (code) => {
   return request.post('/verify', { code })
 }
+
+// 校验图形验证码
+export const checkCaptcha = (data) => {
+  return request.post('/captcha/check', data)
+}

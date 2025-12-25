@@ -4,36 +4,25 @@
       <template #header>
         <h2>防伪码验证</h2>
       </template>
-      
-      <el-form :model="form" @submit.prevent="handleVerify" label-width="0">
-        <el-form-item>
-          <el-input
-            v-model="form.code"
-            placeholder="请输入16位防伪码"
-            clearable
-            size="large"
-            maxlength="17"
-          >
-            <template #prepend>
-              <el-icon><Lock /></el-icon>
-            </template>
-          </el-input>
-        </el-form-item>
+      <el-form-item>
+        <el-input v-model="form.code" placeholder="请输入16位防伪码" clearable size="large" maxlength="17">
+          <template #prepend>
+            <el-icon>
+              <Lock />
+            </el-icon>
+          </template>
+        </el-input>
+      </el-form-item>
 
-        <el-form-item>
-          <el-button 
-            type="primary" 
-            @click="handleVerify" 
-            :loading="loading"
-            size="large"
-            style="width: 100%"
-          >
-            {{ loading ? '验证中...' : '验证真伪' }}
-          </el-button>
-        </el-form-item>
-      </el-form>
+      <el-form-item>
+        <!-- 原按钮改成调 preVerify -->
+        <el-button type="primary" :loading="loading" @click="preVerify" size="large" style="width: 100%">
+          {{ loading ? '验证中...' : '验证真伪' }}
+        </el-button>
+      </el-form-item>
     </el-card>
-
+    <!-- 图形验证码弹窗 -->
+    <CaptchaDialog v-model="captchaVisible" @pass="realVerify" @fail="captchaVisible = false" />
     <!-- 验证结果 -->
     <el-card v-if="result" class="result-card" :class="{ 'success': result.valid, 'failed': !result.valid }">
       <template #header>
@@ -45,7 +34,7 @@
           <span>{{ result.message }}</span>
         </div>
       </template>
-      
+
       <div v-if="result.valid" class="product-info">
         <h3>产品信息</h3>
         <el-descriptions :column="1" border>
@@ -56,21 +45,15 @@
           <el-descriptions-item label="生产批次">{{ result.batchNumber }}</el-descriptions-item>
           <el-descriptions-item label="生产厂家">{{ result.manufacturer }}</el-descriptions-item>
         </el-descriptions>
-        
+
         <div class="verify-info">
           <p>验证次数：<el-tag type="info">{{ result.verifyCount }} 次</el-tag></p>
           <p>首次验证：<el-tag type="info">{{ formatDate(result.firstVerifyTime) }}</el-tag></p>
           <p>本次验证：<el-tag type="info">{{ formatDate(result.currentVerifyTime) }}</el-tag></p>
         </div>
-        
-        <el-alert 
-          v-if="result.verifyCount > 1"
-          title="此防伪码已被多次验证，请确认是否为首次查询！"
-          type="warning"
-          show-icon
-          :closable="false"
-          class="warning-alert"
-        />
+
+        <el-alert v-if="result.verifyCount > 1" title="此防伪码已被多次验证，请确认是否为首次查询！" type="warning" show-icon
+          :closable="false" class="warning-alert" />
       </div>
     </el-card>
 
@@ -83,60 +66,59 @@
     </el-card>
   </div>
 </template>
-
 <script setup>
-import { ref, reactive } from 'vue'
+import { ref, reactive, onMounted } from 'vue'
+import { useRoute } from 'vue-router'
 import { Lock, SuccessFilled, CircleCloseFilled } from '@element-plus/icons-vue'
 import { ElMessage } from 'element-plus'
 import { verifyCode as verifyCodeApi } from '../api/antiFakeCode'
-import { onMounted } from 'vue'
-import { useRoute } from 'vue-router'
+import CaptchaDialog from './CaptchaDialog.vue'   // ① 引入验证码弹窗
 
-const form = reactive({
-  code: ''
-})
-
+const form = reactive({ code: '' })
 const loading = ref(false)
 const result = ref(null)
-
 const route = useRoute()
 
+/* 验证码弹窗开关 */
+const captchaVisible = ref(false)
+
+/* ② 扫码自动填充 & 自动查询（保持原逻辑） */
 onMounted(() => {
   const code = route.query.code
   if (code) {
     form.code = code.trim()
-    handleVerify() 
+    preVerify()          // 同样要走验证码
   }
 })
 
-const handleVerify = async () => {
+/* ③ 点击按钮：先过验证码 */
+function preVerify() {
   if (!form.code.trim()) {
     ElMessage.warning('请输入防伪码')
     return
   }
+  captchaVisible.value = true
+}
 
+/* ④ 验证码通过后继续真正的防伪查询 */
+function realVerify() {
+  captchaVisible.value = false
+  doVerify()
+}
+
+/* ⑤ 原来的查询逻辑，改个函数名即可 */
+async function doVerify() {
   loading.value = true
-  
   try {
-    const response = await verifyCodeApi(form.code.trim())
-    
-    if (response.code === 200) {
-      result.value = {
-        ...response.data,
-        valid: true
-      }
+    const res = await verifyCodeApi(form.code.trim())
+    if (res.code === 200) {
+      result.value = { ...res.data, valid: true }
     } else {
-      result.value = {
-        valid: false,
-        message: response.message || '验证失败'
-      }
+      result.value = { valid: false, message: res.message || '验证失败' }
     }
-  } catch (error) {
-    console.error('验证失败:', error)
-    result.value = {
-      valid: false,
-      message: '验证失败，请稍后重试'
-    }
+  } catch (e) {
+    console.error(e)
+    result.value = { valid: false, message: '验证失败，请稍后重试' }
     ElMessage.error('验证失败')
   } finally {
     loading.value = false
@@ -145,18 +127,9 @@ const handleVerify = async () => {
 
 const formatDate = (dateStr) => {
   if (!dateStr) return '--'
-  const date = new Date(dateStr)
-  return date.toLocaleString('zh-CN', {
-    year: 'numeric',
-    month: '2-digit',
-    day: '2-digit',
-    hour: '2-digit',
-    minute: '2-digit',
-    second: '2-digit'
-  })
+  return new Date(dateStr).toLocaleString('zh-CN')
 }
 </script>
-
 
 <style scoped>
 .verify-container {
