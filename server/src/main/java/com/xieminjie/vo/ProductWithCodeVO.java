@@ -24,6 +24,17 @@ public class ProductWithCodeVO {
     @ExcelProperty("防伪码")
     private String antiFakeCode;
 
+    @ExcelProperty("二维码")   // 新增
+    private byte[] qrImage;   // 仅占位，EasyExcel 不会写图片，由 POI 后续补充
+
+    public byte[] getQrImage() {
+        return qrImage;
+    }
+
+    public void setQrImage(byte[] qrImage) {
+        this.qrImage = qrImage;
+    }
+
     public String getSerialNumber() {
         return serialNumber;
     }

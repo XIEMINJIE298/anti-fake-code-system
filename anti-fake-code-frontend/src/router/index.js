@@ -5,7 +5,7 @@ import VerifyView from '../views/VerifyView.vue'
 const routes = [
   {
     path: '/',
-    redirect: '/upload'
+    redirect: '/verify'
   },
   {
     path: '/upload',

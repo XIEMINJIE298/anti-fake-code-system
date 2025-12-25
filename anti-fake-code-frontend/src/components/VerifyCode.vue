@@ -89,6 +89,8 @@ import { ref, reactive } from 'vue'
 import { Lock, SuccessFilled, CircleCloseFilled } from '@element-plus/icons-vue'
 import { ElMessage } from 'element-plus'
 import { verifyCode as verifyCodeApi } from '../api/antiFakeCode'
+import { onMounted } from 'vue'
+import { useRoute } from 'vue-router'
 
 const form = reactive({
   code: ''
@@ -96,6 +98,16 @@ const form = reactive({
 
 const loading = ref(false)
 const result = ref(null)
+
+const route = useRoute()
+
+onMounted(() => {
+  const code = route.query.code
+  if (code) {
+    form.code = code.trim()
+    handleVerify() 
+  }
+})
 
 const handleVerify = async () => {
   if (!form.code.trim()) {

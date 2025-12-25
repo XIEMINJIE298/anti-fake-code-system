@@ -41,3 +41,6 @@ logging:
     name: ./logs/anti-fake-code.log
     max-size: 100MB
     max-history: 30
+
+app:
+  qr-domain: https://1b62eb85.r38.cpolar.top

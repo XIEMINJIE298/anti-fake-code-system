@@ -1,6 +1,11 @@
 package com.xieminjie.service.impl;
 
 import com.alibaba.excel.EasyExcel;
+import com.google.zxing.BarcodeFormat;
+import com.google.zxing.EncodeHintType;
+import com.google.zxing.client.j2se.MatrixToImageWriter;
+import com.google.zxing.common.BitMatrix;
+import com.google.zxing.qrcode.QRCodeWriter;
 import com.xieminjie.dto.VerifyRequest;
 import com.xieminjie.dto.VerifyResultDTO;
 import com.xieminjie.entity.AntiFakeCode;
@@ -12,14 +17,25 @@ import com.xieminjie.mapper.ProductMapper;
 import com.xieminjie.mapper.VerificationRecordMapper;
 import com.xieminjie.service.AntiFakeCodeService;
 import com.xieminjie.vo.ProductWithCodeVO;
+import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
+import org.apache.poi.ss.usermodel.Sheet;
+import org.apache.poi.ss.usermodel.Workbook;
+import org.apache.poi.util.IOUtils;
+import org.apache.poi.xssf.usermodel.XSSFClientAnchor;
+import org.apache.poi.xssf.usermodel.XSSFDrawing;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.net.URLEncoder;
 import java.nio.file.Files;
+import java.nio.file.Path;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -34,6 +50,9 @@ public class AntiFakeCodeServiceImpl implements AntiFakeCodeService {
 
     @Autowired
     private VerificationRecordMapper verificationRecordMapper;
+
+    @Value("${app.qr-domain}")
+    private String qrDomain;
 
     @Override
     public Map<String, Object> uploadAndGenerateAntiFakeCode(MultipartFile file) {
@@ -283,5 +302,65 @@ public class AntiFakeCodeServiceImpl implements AntiFakeCodeService {
         EasyExcel.write(filePath, ProductWithCodeVO.class)
                 .sheet("防伪码信息")
                 .doWrite(resultData);
+
+        // 4. 再用 POI 把二维码图片逐行插入
+        File excelFile = new File(filePath);
+        for (int i = 0; i < products.size(); i++) {
+            String serial = products.get(i).getSerialNumber();
+            String code   = codeMap.get(serial);
+            String qrName = "qr_" + serial;
+            String verifyUrl = qrDomain + "/verify?code=" + code;
+            String qrPath = generateQrImage(verifyUrl, qrName);
+            writeQrToExcel(excelFile, i + 1, qrPath);           // +1 跳过表头
+            new File(qrPath).delete();                          // 图片已写入 Excel，本地文件可删
+        }
+    }
+
+    /**
+     * 根据防伪码文本生成二维码图片文件，返回文件绝对路径
+     */
+    private String generateQrImage(String content, String fileName) throws IOException {
+        int width = 200;
+        int height = 200;
+        String format = "png";
+        Map<EncodeHintType, Object> hints = new HashMap<>();
+        hints.put(EncodeHintType.CHARACTER_SET, "UTF-8");
+        try {
+            BitMatrix matrix = new QRCodeWriter().encode(content, BarcodeFormat.QR_CODE, width, height, hints);
+            Path path = Path.of("temp", fileName + ".png");
+            MatrixToImageWriter.writeToPath(matrix, format, path);
+            return path.toAbsolutePath().toString();
+        } catch (Exception e) {
+            throw new IOException("生成二维码失败", e);
+        }
+    }
+
+    /**
+     * 把二维码图片写入 Excel 指定行列（EasyExcel 不支持图片，这里用 POI 补充）
+     */
+    private void writeQrToExcel(File excelFile, int rowIndex, String qrPath) throws IOException {
+        File tmp = new File(excelFile.getAbsolutePath() + ".tmp");
+        try (XSSFWorkbook wb = new XSSFWorkbook(excelFile);
+             FileOutputStream fos = new FileOutputStream(tmp)) {
+
+            Sheet sheet = wb.getSheetAt(0);
+            // 创建图片辅助类
+            XSSFDrawing drawing = (XSSFDrawing) sheet.createDrawingPatriarch();
+            // 读取二维码字节
+            byte[] bytes = IOUtils.toByteArray(new FileInputStream(qrPath));
+            int pictureIdx = wb.addPicture(bytes, Workbook.PICTURE_TYPE_PNG);
+
+            // 锚点：第7列（G列），rowIndex行，适度缩放
+            XSSFClientAnchor anchor = new XSSFClientAnchor(0, 0, 0, 0, 6, rowIndex, 7, rowIndex + 1);
+            drawing.createPicture(anchor, pictureIdx);
+
+            wb.write(fos);
+        } catch (InvalidFormatException e) {
+            throw new IOException("XSSFWorkbook抛出异常");
+        }
+        // 替换原文件
+        if (!excelFile.delete() || !tmp.renameTo(excelFile)) {
+            throw new IOException("二维码写入后文件替换失败");
+        }
     }
 }
