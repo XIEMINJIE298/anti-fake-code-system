@@ -1,0 +1,13 @@
+{
+  "pages": [
+    "pages/index/index"
+  ],
+  "window": {
+    "navigationBarTextStyle": "black",
+    "navigationBarTitleText": "防伪码验证",
+    "navigationBarBackgroundColor": "#ffffff",
+    "backgroundColor": "#f5f7fa"
+  },
+  "style": "v2",
+  "sitemapLocation": "sitemap.json"
+}

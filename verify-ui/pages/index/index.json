@@ -1,0 +1,6 @@
+{
+  "navigationBarTitleText": "防伪码验证",
+  "usingComponents": {
+    "verify-code": "/components/verify-code/verify-code"
+  }
+}

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xieminjie.mapper.AntiFakeCodeMapper">
+
+    <insert id="batchInsert" parameterType="java.util.List">
+        INSERT INTO anti_fake_code (
+        code, serial_number, product_id, status, generate_time,
+        verify_count, created_time
+        ) VALUES
+        <foreach collection="codes" item="item" separator=",">
+            (
+            #{item.code}, #{item.serialNumber}, #{item.productId},
+            #{item.status}, #{item.generateTime}, #{item.verifyCount},
+            #{item.createdTime}
+            )
+        </foreach>
+    </insert>
+
+    <select id="selectByCode" resultType="com.xieminjie.entity.AntiFakeCode">
+        SELECT * FROM anti_fake_code WHERE code = #{code}
+    </select>
+
+    <update id="updateVerifyInfo">
+        UPDATE anti_fake_code
+        SET first_verify_time = #{firstVerifyTime},
+            verify_count = #{verifyCount}
+        WHERE code = #{code}
+    </update>
+
+</mapper>

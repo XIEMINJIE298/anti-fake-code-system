@@ -1,0 +1,4 @@
+<view class="verify-view">
+  <text class="title">防伪码验证系统</text>
+  <verify-code />
+</view>

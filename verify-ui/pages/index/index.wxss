@@ -1,0 +1,14 @@
+.verify-view {
+  padding: 40rpx 20rpx;
+  background-color: #f5f7fa;
+  min-height: 100vh;
+}
+
+.title {
+  display: block;
+  text-align: center;
+  font-size: 48rpx;
+  font-weight: bold;
+  color: #303133;
+  margin-bottom: 60rpx;
+}

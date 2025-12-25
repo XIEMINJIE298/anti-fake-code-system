@@ -1,0 +1,15 @@
+2025-12-24T17:08:21.537+08:00  INFO 36668 --- [server] [main] com.xieminjie.ServerApplication          : Starting ServerApplication using Java 21.0.9 with PID 36668 (C:\Users\29856\Desktop\anti-fake-code-system\server\target\classes started by 29856 in C:\Users\29856\Desktop\anti-fake-code-system\server)
+2025-12-24T17:08:21.539+08:00  INFO 36668 --- [server] [main] com.xieminjie.ServerApplication          : No active profile set, falling back to 1 default profile: "default"
+2025-12-24T17:08:22.694+08:00  INFO 36668 --- [server] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2025-12-24T17:08:22.707+08:00  INFO 36668 --- [server] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-12-24T17:08:22.708+08:00  INFO 36668 --- [server] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.50]
+2025-12-24T17:08:22.758+08:00  INFO 36668 --- [server] [main] o.a.c.c.C.[Tomcat].[localhost].[/api]    : Initializing Spring embedded WebApplicationContext
+2025-12-24T17:08:22.758+08:00  INFO 36668 --- [server] [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1171 ms
+2025-12-24T17:08:23.347+08:00  INFO 36668 --- [server] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path '/api'
+2025-12-24T17:08:23.354+08:00  INFO 36668 --- [server] [main] com.xieminjie.ServerApplication          : Started ServerApplication in 2.358 seconds (process running for 3.054)
+2025-12-24T17:10:13.177+08:00  INFO 36668 --- [server] [http-nio-8080-exec-2] o.a.c.c.C.[Tomcat].[localhost].[/api]    : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-12-24T17:10:13.177+08:00  INFO 36668 --- [server] [http-nio-8080-exec-2] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2025-12-24T17:10:13.178+08:00  INFO 36668 --- [server] [http-nio-8080-exec-2] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2025-12-24T17:10:13.657+08:00  INFO 36668 --- [server] [http-nio-8080-exec-2] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2025-12-24T17:10:13.866+08:00  INFO 36668 --- [server] [http-nio-8080-exec-2] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@7d9d048c
+2025-12-24T17:10:13.868+08:00  INFO 36668 --- [server] [http-nio-8080-exec-2] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.

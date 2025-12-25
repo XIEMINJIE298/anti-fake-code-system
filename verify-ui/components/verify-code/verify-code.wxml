@@ -1,0 +1,97 @@
+<view class="verify-container">
+  <!-- 验证卡片 -->
+  <view class="verify-card">
+    <view class="card-header">
+      <text class="header-title">防伪码验证</text>
+    </view>
+    
+    <view class="card-body">
+      <view class="input-group">
+        <icon type="success" size="20" color="#409eff" class="input-icon" />
+        <input 
+          type="text" 
+          placeholder="请输入16位防伪码" 
+          value="{{code}}" 
+          bindinput="onCodeInput"
+          bindconfirm="handleVerify"
+          maxlength="17"
+          class="verify-input"
+        />
+      </view>
+      
+      <button 
+        type="primary" 
+        bindtap="handleVerify" 
+        loading="{{loading}}"
+        class="verify-btn"
+      >
+        {{loading ? '验证中...' : '验证真伪'}}
+      </button>
+    </view>
+  </view>
+
+  <!-- 验证结果 -->
+  <view wx:if="{{result}}" class="result-card {{result.valid ? 'success' : 'failed'}}">
+    <view class="result-header">
+      <icon type="{{result.valid ? 'success' : 'warn'}}" size="40" color="{{result.valid ? '#67c23a' : '#f56c6c'}}" />
+      <text class="result-message">{{result.message}}</text>
+    </view>
+    
+    <view wx:if="{{result.valid}}" class="product-info">
+      <text class="info-title">产品信息</text>
+      
+      <view class="info-item">
+        <text class="info-label">产品序列号：</text>
+        <text class="info-value">{{result.serialNumber}}</text>
+      </view>
+      <view class="info-item">
+        <text class="info-label">产品名称：</text>
+        <text class="info-value">{{result.productName}}</text>
+      </view>
+      <view class="info-item">
+        <text class="info-label">产品类别：</text>
+        <text class="info-value">{{result.category}}</text>
+      </view>
+      <view class="info-item">
+        <text class="info-label">产品型号：</text>
+        <text class="info-value">{{result.model}}</text>
+      </view>
+      <view class="info-item">
+        <text class="info-label">生产批次：</text>
+        <text class="info-value">{{result.batchNumber}}</text>
+      </view>
+      <view class="info-item">
+        <text class="info-label">生产厂家：</text>
+        <text class="info-value">{{result.manufacturer}}</text>
+      </view>
+      
+      <view class="verify-info">
+        <view class="info-row">
+          <text class="info-label">验证次数：</text>
+          <text class="info-tag">{{result.verifyCount}} 次</text>
+        </view>
+        <view class="info-row">
+          <text class="info-label">首次验证：</text>
+          <text class="info-tag">{{formatDate(result.firstVerifyTime)}}</text>
+        </view>
+        <view class="info-row">
+          <text class="info-label">本次验证：</text>
+          <text class="info-tag">{{formatDate(result.currentVerifyTime)}}</text>
+        </view>
+      </view>
+      
+      <view wx:if="{{result.verifyCount > 1}}" class="warning-box">
+        <icon type="warn" size="16" color="#e6a23c" />
+        <text class="warning-text">此防伪码已被多次验证，请确认是否为首次查询！</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 验证历史 -->
+  <view wx:if="{{result && result.valid}}" class="history-card">
+    <view class="history-header">
+      <text class="history-title">验证历史</text>
+    </view>
+    <text class="history-tip">您可以通过企业管理后台查看详细的验证记录</text>
+  </view>
+</view>
