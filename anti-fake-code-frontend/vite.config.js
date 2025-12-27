@@ -13,7 +13,7 @@ export default defineConfig({
     allowedHosts: ['1b62eb85.r38.cpolar.top'], // 添加这一行
     proxy: {
       '/api': {
-        target: 'https://30b98cb6.r38.cpolar.top',
+        target: 'http://localhost:8080',
         changeOrigin: true,
         secure: false,
         configure: (proxy, options) => {

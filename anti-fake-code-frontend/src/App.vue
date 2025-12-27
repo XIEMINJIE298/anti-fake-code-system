@@ -1,28 +1,27 @@
 <template>
   <div id="app">
-    <el-container>
-      <el-header>
-        <el-menu 
-          :default-active="$route.path" 
-          mode="horizontal" 
-          router
-          class="menu"
-        >
-          <el-menu-item index="/upload">
-            <el-icon><Upload /></el-icon>
-            生成防伪码
-          </el-menu-item>
-          <el-menu-item index="/verify">
-            <el-icon><Search /></el-icon>
-            验证防伪码
-          </el-menu-item>
-        </el-menu>
-      </el-header>
-      
-      <el-main>
-        <router-view />
-      </el-main>
-    </el-container>
+    <!-- 根据路由meta信息决定是否显示头部 -->
+    <el-header v-if="!$route.meta.hideHeader">
+      <el-menu 
+        :default-active="$route.path" 
+        mode="horizontal" 
+        router
+        class="menu"
+      >
+        <el-menu-item index="/upload">
+          <el-icon><Upload /></el-icon>
+          生成防伪码
+        </el-menu-item>
+        <el-menu-item index="/verify">
+          <el-icon><Search /></el-icon>
+          验证防伪码
+        </el-menu-item>
+      </el-menu>
+    </el-header>
+    
+    <el-main :class="{ 'full-height': $route.meta.hideHeader }">
+      <router-view />
+    </el-main>
   </div>
 </template>
 
@@ -50,5 +49,13 @@ import { Upload, Search } from '@element-plus/icons-vue'
 .el-main {
   background-color: #f5f7fa;
   min-height: calc(100vh - 60px);
+}
+
+/* 登录页面全屏样式 */
+.el-main.full-height {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 </style>

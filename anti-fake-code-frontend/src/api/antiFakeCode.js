@@ -1,5 +1,7 @@
 import request from './index'
 
+import { computed } from 'vue'
+
 // 上传Excel生成防伪码
 export const uploadExcel = (file) => {
   const formData = new FormData()
@@ -9,7 +11,7 @@ export const uploadExcel = (file) => {
     headers: {
       'Content-Type': 'multipart/form-data'
     },
-    responseType: 'blob' // 重要：用于文件下载
+    responseType: 'blob'
   })
 }
 
@@ -22,3 +24,10 @@ export const verifyCode = (code) => {
 export const checkCaptcha = (data) => {
   return request.post('/captcha/check', data)
 }
+
+
+// 获取图形验证码
+export const getCaptcha = (data) => {
+  const uuid = data.uuid || 'default-uuid';
+  return `/captcha/image?uuid=${uuid}`;
+};

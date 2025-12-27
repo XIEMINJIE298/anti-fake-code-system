@@ -1,91 +1,48 @@
-2025-12-26T00:06:19.061+08:00  INFO 74412 --- [server] [SpringApplicationShutdownHook] o.s.b.w.e.tomcat.GracefulShutdown        : Commencing graceful shutdown. Waiting for active requests to complete
-2025-12-26T00:06:19.075+08:00  INFO 74412 --- [server] [tomcat-shutdown] o.s.b.w.e.tomcat.GracefulShutdown        : Graceful shutdown complete
-2025-12-26T00:06:19.078+08:00  INFO 74412 --- [server] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
-2025-12-26T00:06:19.085+08:00  INFO 74412 --- [server] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
-2025-12-26T00:06:24.347+08:00  INFO 73256 --- [server] [main] com.xieminjie.ServerApplication          : Starting ServerApplication using Java 21.0.9 with PID 73256 (C:\Users\29856\Desktop\anti-fake-code-system\server\target\classes started by 29856 in C:\Users\29856\Desktop\anti-fake-code-system\server)
-2025-12-26T00:06:24.348+08:00  INFO 73256 --- [server] [main] com.xieminjie.ServerApplication          : No active profile set, falling back to 1 default profile: "default"
-2025-12-26T00:06:25.150+08:00  INFO 73256 --- [server] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
-2025-12-26T00:06:25.163+08:00  INFO 73256 --- [server] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
-2025-12-26T00:06:25.163+08:00  INFO 73256 --- [server] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.50]
-2025-12-26T00:06:25.214+08:00  INFO 73256 --- [server] [main] o.a.c.c.C.[Tomcat].[localhost].[/api]    : Initializing Spring embedded WebApplicationContext
-2025-12-26T00:06:25.214+08:00  INFO 73256 --- [server] [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 830 ms
-2025-12-26T00:06:25.827+08:00  INFO 73256 --- [server] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path '/api'
-2025-12-26T00:06:25.833+08:00  INFO 73256 --- [server] [main] com.xieminjie.ServerApplication          : Started ServerApplication in 2.126 seconds (process running for 2.868)
-2025-12-26T00:28:59.119+08:00  INFO 73256 --- [server] [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/api]    : Initializing Spring DispatcherServlet 'dispatcherServlet'
-2025-12-26T00:28:59.119+08:00  INFO 73256 --- [server] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
-2025-12-26T00:28:59.121+08:00  INFO 73256 --- [server] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
-2025-12-26T00:33:49.716+08:00 ERROR 73256 --- [server] [http-nio-8080-exec-10] o.a.c.c.C.[.[.[.[dispatcherServlet]      : Servlet.service() for servlet [dispatcherServlet] in context with path [/api] threw exception [Request processing failed: java.lang.NullPointerException: Cannot invoke "javax.script.ScriptEngine.eval(String)" because "engine" is null] with root cause
-
-java.lang.NullPointerException: Cannot invoke "javax.script.ScriptEngine.eval(String)" because "engine" is null
-	at com.wf.captcha.base.ArithmeticCaptchaAbstract.alphas(ArithmeticCaptchaAbstract.java:42) ~[easy-captcha-1.6.2.jar:na]
-	at com.wf.captcha.base.Captcha.checkAlpha(Captcha.java:156) ~[easy-captcha-1.6.2.jar:na]
-	at com.wf.captcha.base.Captcha.text(Captcha.java:137) ~[easy-captcha-1.6.2.jar:na]
-	at com.xieminjie.controller.CaptchaController.image(CaptchaController.java:36) ~[classes/:na]
-	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103) ~[na:na]
-	at java.base/java.lang.reflect.Method.invoke(Method.java:580) ~[na:na]
-	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:258) ~[spring-web-6.2.15.jar:6.2.15]
-	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:191) ~[spring-web-6.2.15.jar:6.2.15]
-	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:118) ~[spring-webmvc-6.2.15.jar:6.2.15]
-	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:991) ~[spring-webmvc-6.2.15.jar:6.2.15]
-	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:896) ~[spring-webmvc-6.2.15.jar:6.2.15]
-	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:87) ~[spring-webmvc-6.2.15.jar:6.2.15]
-	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1089) ~[spring-webmvc-6.2.15.jar:6.2.15]
-	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:979) ~[spring-webmvc-6.2.15.jar:6.2.15]
-	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1014) ~[spring-webmvc-6.2.15.jar:6.2.15]
-	at org.springframework.web.servlet.FrameworkServlet.doGet(FrameworkServlet.java:903) ~[spring-webmvc-6.2.15.jar:6.2.15]
-	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:564) ~[tomcat-embed-core-10.1.50.jar:6.0]
-	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:885) ~[spring-webmvc-6.2.15.jar:6.2.15]
-	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:658) ~[tomcat-embed-core-10.1.50.jar:6.0]
-	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193) ~[tomcat-embed-core-10.1.50.jar:10.1.50]
-	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:138) ~[tomcat-embed-core-10.1.50.jar:10.1.50]
-	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:51) ~[tomcat-embed-websocket-10.1.50.jar:10.1.50]
-	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:162) ~[tomcat-embed-core-10.1.50.jar:10.1.50]
-	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:138) ~[tomcat-embed-core-10.1.50.jar:10.1.50]
-	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100) ~[spring-web-6.2.15.jar:6.2.15]
-	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-6.2.15.jar:6.2.15]
-	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:162) ~[tomcat-embed-core-10.1.50.jar:10.1.50]
-	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:138) ~[tomcat-embed-core-10.1.50.jar:10.1.50]
-	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93) ~[spring-web-6.2.15.jar:6.2.15]
-	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-6.2.15.jar:6.2.15]
-	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:162) ~[tomcat-embed-core-10.1.50.jar:10.1.50]
-	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:138) ~[tomcat-embed-core-10.1.50.jar:10.1.50]
-	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201) ~[spring-web-6.2.15.jar:6.2.15]
-	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-6.2.15.jar:6.2.15]
-	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:162) ~[tomcat-embed-core-10.1.50.jar:10.1.50]
-	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:138) ~[tomcat-embed-core-10.1.50.jar:10.1.50]
-	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:101) ~[spring-web-6.2.15.jar:6.2.15]
-	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:162) ~[tomcat-embed-core-10.1.50.jar:10.1.50]
-	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:138) ~[tomcat-embed-core-10.1.50.jar:10.1.50]
-	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:165) ~[tomcat-embed-core-10.1.50.jar:10.1.50]
-	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:88) ~[tomcat-embed-core-10.1.50.jar:10.1.50]
-	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:482) ~[tomcat-embed-core-10.1.50.jar:10.1.50]
-	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:113) ~[tomcat-embed-core-10.1.50.jar:10.1.50]
-	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:83) ~[tomcat-embed-core-10.1.50.jar:10.1.50]
-	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:72) ~[tomcat-embed-core-10.1.50.jar:10.1.50]
-	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:342) ~[tomcat-embed-core-10.1.50.jar:10.1.50]
-	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:399) ~[tomcat-embed-core-10.1.50.jar:10.1.50]
-	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:63) ~[tomcat-embed-core-10.1.50.jar:10.1.50]
-	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:903) ~[tomcat-embed-core-10.1.50.jar:10.1.50]
-	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1774) ~[tomcat-embed-core-10.1.50.jar:10.1.50]
-	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:52) ~[tomcat-embed-core-10.1.50.jar:10.1.50]
-	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:973) ~[tomcat-embed-core-10.1.50.jar:10.1.50]
-	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:491) ~[tomcat-embed-core-10.1.50.jar:10.1.50]
-	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:63) ~[tomcat-embed-core-10.1.50.jar:10.1.50]
-	at java.base/java.lang.Thread.run(Thread.java:1583) ~[na:na]
-
-2025-12-26T00:37:48.001+08:00  INFO 73256 --- [server] [SpringApplicationShutdownHook] o.s.b.w.e.tomcat.GracefulShutdown        : Commencing graceful shutdown. Waiting for active requests to complete
-2025-12-26T00:37:48.015+08:00  INFO 73256 --- [server] [tomcat-shutdown] o.s.b.w.e.tomcat.GracefulShutdown        : Graceful shutdown complete
-2025-12-26T00:37:51.770+08:00  INFO 76640 --- [server] [main] com.xieminjie.ServerApplication          : Starting ServerApplication using Java 21.0.9 with PID 76640 (C:\Users\29856\Desktop\anti-fake-code-system\server\target\classes started by 29856 in C:\Users\29856\Desktop\anti-fake-code-system\server)
-2025-12-26T00:37:51.772+08:00  INFO 76640 --- [server] [main] com.xieminjie.ServerApplication          : No active profile set, falling back to 1 default profile: "default"
-2025-12-26T00:37:52.576+08:00  INFO 76640 --- [server] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
-2025-12-26T00:37:52.588+08:00  INFO 76640 --- [server] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
-2025-12-26T00:37:52.589+08:00  INFO 76640 --- [server] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.50]
-2025-12-26T00:37:52.631+08:00  INFO 76640 --- [server] [main] o.a.c.c.C.[Tomcat].[localhost].[/api]    : Initializing Spring embedded WebApplicationContext
-2025-12-26T00:37:52.632+08:00  INFO 76640 --- [server] [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 820 ms
-2025-12-26T00:37:53.150+08:00  INFO 76640 --- [server] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path '/api'
-2025-12-26T00:37:53.157+08:00  INFO 76640 --- [server] [main] com.xieminjie.ServerApplication          : Started ServerApplication in 1.875 seconds (process running for 2.527)
-2025-12-26T00:38:00.595+08:00  INFO 76640 --- [server] [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/api]    : Initializing Spring DispatcherServlet 'dispatcherServlet'
-2025-12-26T00:38:00.595+08:00  INFO 76640 --- [server] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
-2025-12-26T00:38:00.596+08:00  INFO 76640 --- [server] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
-2025-12-26T00:39:37.312+08:00  INFO 76640 --- [server] [SpringApplicationShutdownHook] o.s.b.w.e.tomcat.GracefulShutdown        : Commencing graceful shutdown. Waiting for active requests to complete
-2025-12-26T00:39:37.325+08:00  INFO 76640 --- [server] [tomcat-shutdown] o.s.b.w.e.tomcat.GracefulShutdown        : Graceful shutdown complete
+2025-12-27T01:19:59.959+08:00  INFO 27884 --- [server] [main] com.xieminjie.ServerApplication          : Starting ServerApplication using Java 21.0.9 with PID 27884 (C:\Users\29856\Desktop\anti-fake-code-system\server\target\classes started by 29856 in C:\Users\29856\Desktop\anti-fake-code-system\server)
+2025-12-27T01:19:59.965+08:00  INFO 27884 --- [server] [main] com.xieminjie.ServerApplication          : No active profile set, falling back to 1 default profile: "default"
+2025-12-27T01:20:01.022+08:00  INFO 27884 --- [server] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2025-12-27T01:20:01.041+08:00  INFO 27884 --- [server] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-12-27T01:20:01.042+08:00  INFO 27884 --- [server] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.50]
+2025-12-27T01:20:01.101+08:00  INFO 27884 --- [server] [main] o.a.c.c.C.[Tomcat].[localhost].[/api]    : Initializing Spring embedded WebApplicationContext
+2025-12-27T01:20:01.101+08:00  INFO 27884 --- [server] [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1080 ms
+2025-12-27T01:20:01.638+08:00  INFO 27884 --- [server] [main] r$InitializeUserDetailsManagerConfigurer : Global AuthenticationManager configured with UserDetailsService bean with name userDetailsServiceImpl
+2025-12-27T01:20:01.916+08:00  INFO 27884 --- [server] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path '/api'
+2025-12-27T01:20:01.925+08:00  INFO 27884 --- [server] [main] com.xieminjie.ServerApplication          : Started ServerApplication in 2.436 seconds (process running for 3.2)
+2025-12-27T01:20:30.925+08:00  INFO 27884 --- [server] [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/api]    : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-12-27T01:20:30.926+08:00  INFO 27884 --- [server] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2025-12-27T01:20:30.927+08:00  INFO 27884 --- [server] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 0 ms
+2025-12-27T01:23:27.280+08:00  INFO 27884 --- [server] [SpringApplicationShutdownHook] o.s.b.w.e.tomcat.GracefulShutdown        : Commencing graceful shutdown. Waiting for active requests to complete
+2025-12-27T01:23:27.285+08:00  INFO 27884 --- [server] [tomcat-shutdown] o.s.b.w.e.tomcat.GracefulShutdown        : Graceful shutdown complete
+2025-12-27T01:23:30.439+08:00  INFO 30564 --- [server] [main] com.xieminjie.ServerApplication          : Starting ServerApplication using Java 21.0.9 with PID 30564 (C:\Users\29856\Desktop\anti-fake-code-system\server\target\classes started by 29856 in C:\Users\29856\Desktop\anti-fake-code-system\server)
+2025-12-27T01:23:30.440+08:00  INFO 30564 --- [server] [main] com.xieminjie.ServerApplication          : No active profile set, falling back to 1 default profile: "default"
+2025-12-27T01:23:31.289+08:00  INFO 30564 --- [server] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2025-12-27T01:23:31.311+08:00  INFO 30564 --- [server] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-12-27T01:23:31.312+08:00  INFO 30564 --- [server] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.50]
+2025-12-27T01:23:31.356+08:00  INFO 30564 --- [server] [main] o.a.c.c.C.[Tomcat].[localhost].[/api]    : Initializing Spring embedded WebApplicationContext
+2025-12-27T01:23:31.356+08:00  INFO 30564 --- [server] [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 884 ms
+2025-12-27T01:23:31.776+08:00  INFO 30564 --- [server] [main] r$InitializeUserDetailsManagerConfigurer : Global AuthenticationManager configured with UserDetailsService bean with name userDetailsServiceImpl
+2025-12-27T01:23:32.015+08:00  INFO 30564 --- [server] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path '/api'
+2025-12-27T01:23:32.022+08:00  INFO 30564 --- [server] [main] com.xieminjie.ServerApplication          : Started ServerApplication in 2.006 seconds (process running for 2.525)
+2025-12-27T01:23:39.919+08:00  INFO 30564 --- [server] [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/api]    : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-12-27T01:23:39.920+08:00  INFO 30564 --- [server] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2025-12-27T01:23:39.920+08:00  INFO 30564 --- [server] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 0 ms
+2025-12-27T01:23:40.047+08:00  INFO 30564 --- [server] [http-nio-8080-exec-1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2025-12-27T01:23:40.201+08:00  INFO 30564 --- [server] [http-nio-8080-exec-1] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@42d5d6c2
+2025-12-27T01:23:40.203+08:00  INFO 30564 --- [server] [http-nio-8080-exec-1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2025-12-27T01:48:29.298+08:00  INFO 30564 --- [server] [SpringApplicationShutdownHook] o.s.b.w.e.tomcat.GracefulShutdown        : Commencing graceful shutdown. Waiting for active requests to complete
+2025-12-27T01:48:29.303+08:00  INFO 30564 --- [server] [tomcat-shutdown] o.s.b.w.e.tomcat.GracefulShutdown        : Graceful shutdown complete
+2025-12-27T01:48:29.306+08:00  INFO 30564 --- [server] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2025-12-27T01:48:29.309+08:00  INFO 30564 --- [server] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2025-12-27T01:48:32.620+08:00  INFO 27260 --- [server] [main] com.xieminjie.ServerApplication          : Starting ServerApplication using Java 21.0.9 with PID 27260 (C:\Users\29856\Desktop\anti-fake-code-system\server\target\classes started by 29856 in C:\Users\29856\Desktop\anti-fake-code-system\server)
+2025-12-27T01:48:32.622+08:00  INFO 27260 --- [server] [main] com.xieminjie.ServerApplication          : No active profile set, falling back to 1 default profile: "default"
+2025-12-27T01:48:33.495+08:00  INFO 27260 --- [server] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2025-12-27T01:48:33.507+08:00  INFO 27260 --- [server] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-12-27T01:48:33.507+08:00  INFO 27260 --- [server] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.50]
+2025-12-27T01:48:33.558+08:00  INFO 27260 --- [server] [main] o.a.c.c.C.[Tomcat].[localhost].[/api]    : Initializing Spring embedded WebApplicationContext
+2025-12-27T01:48:33.558+08:00  INFO 27260 --- [server] [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 905 ms
+2025-12-27T01:48:34.002+08:00  INFO 27260 --- [server] [main] r$InitializeUserDetailsManagerConfigurer : Global AuthenticationManager configured with UserDetailsService bean with name userDetailsServiceImpl
+2025-12-27T01:48:34.241+08:00  INFO 27260 --- [server] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path '/api'
+2025-12-27T01:48:34.247+08:00  INFO 27260 --- [server] [main] com.xieminjie.ServerApplication          : Started ServerApplication in 2.034 seconds (process running for 2.571)
+2025-12-27T01:52:19.728+08:00  INFO 27260 --- [server] [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/api]    : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-12-27T01:52:19.729+08:00  INFO 27260 --- [server] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2025-12-27T01:52:19.731+08:00  INFO 27260 --- [server] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms

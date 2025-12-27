@@ -32,6 +32,7 @@ public class CaptchaController {
     /** 生成算术验证码图片 */
     @GetMapping("/image")
     public void image(@RequestParam String uuid, HttpServletResponse resp) throws IOException {
+        System.out.println("生成验证码：" + uuid);
         SpecCaptcha captcha = new SpecCaptcha(130, 48, 4); // 4位字符
         String text = captcha.text();           // 计算结果
         cache.put(uuid + "_" + System.currentTimeMillis(), text);

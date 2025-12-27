@@ -26,6 +26,7 @@
 import { ref, computed, nextTick } from 'vue'
 import { ElMessage } from 'element-plus'
 import { checkCaptcha } from '@/api/antiFakeCode'
+import { getCaptcha } from '@/api/antiFakeCode'
 
 const props = defineProps({ modelValue: Boolean })
 const emit = defineEmits(['update:modelValue', 'pass', 'fail'])
@@ -36,7 +37,7 @@ const input = ref('')
 const loading = ref(false)
 
 // 图片地址
-const imgUrl = computed(() => `/api/captcha/image?uuid=${uuid.value}`)
+const imgUrl = computed(() => getCaptcha({ uuid: uuid.value }));
 
 function refresh() {
   // 兼容低版本
