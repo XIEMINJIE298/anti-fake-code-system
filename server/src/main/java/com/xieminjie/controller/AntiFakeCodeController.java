@@ -6,6 +6,7 @@ import com.xieminjie.dto.VerifyResultDTO;
 import com.xieminjie.service.AntiFakeCodeService;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -28,6 +29,7 @@ public class AntiFakeCodeController {
     /**
      * 上传Excel生成防伪码并返回文件
      */
+    @PreAuthorize("hasRole('admin')")
     @PostMapping("/upload")
     public void uploadExcel(@RequestParam("file") MultipartFile file, HttpServletResponse response) {
         OutputStream out = null;

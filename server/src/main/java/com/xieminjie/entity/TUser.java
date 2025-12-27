@@ -7,10 +7,10 @@ import java.io.Serializable;
  * (TUser)实体类
  *
  * @author makejava
- * @since 2025-12-26 10:31:35
+ * @since 2025-12-27 16:33:50
  */
 public class TUser implements Serializable {
-    private static final long serialVersionUID = 275573893466138078L;
+    private static final long serialVersionUID = 400588918794117184L;
 
     private Long id;
 
@@ -19,6 +19,8 @@ public class TUser implements Serializable {
     private String password;
 
     private Date createTime;
+
+    private String role;// admin/user
 
 
     public Long getId() {
@@ -51,6 +53,14 @@ public class TUser implements Serializable {
 
     public void setCreateTime(Date createTime) {
         this.createTime = createTime;
+    }
+
+    public String getRole() {
+        return role;
+    }
+
+    public void setRole(String role) {
+        this.role = role;
     }
 
 }

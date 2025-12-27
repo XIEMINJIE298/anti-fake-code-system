@@ -44,6 +44,7 @@ public class AuthController {
         String token = jwtUtil.generate(user.getUsername());
         Map<String,Object> map = new HashMap<>();
         map.put("token", token);
+        map.put("role", user.getRole());   // ← 新增
         return Result.success(map);
     }
 
@@ -56,6 +57,12 @@ public class AuthController {
         user.setUsername(dto.getUsername());
         user.setPassword(passwordEncoder.encode(dto.getPassword()));
         tuserMapper.insert(user);
+        return Result.success(null);
+    }
+
+    @PostMapping("/logout")
+    public Result<Void> logout() {
+
         return Result.success(null);
     }
 }

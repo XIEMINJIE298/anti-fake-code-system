@@ -41,6 +41,7 @@ const doLogin = async () => {
     // 能走到这里说明 http 状态是 2xx
     if (res.code === 200) {
       localStorage.setItem('token', res.data.token)
+      localStorage.setItem('role', res.data.role)
       router.push('/verify')
     } else {
       // 后端提示账号密码错，但 http 仍是 200
