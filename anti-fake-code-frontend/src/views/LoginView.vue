@@ -30,17 +30,25 @@
 import { ref } from 'vue'
 import { useRouter } from 'vue-router'
 import { login } from '@/api/auth'
+import { ElMessage } from 'element-plus'
 
 const router = useRouter()
 const form = ref({ username: '', password: '' })
 
 const doLogin = async () => {
-  const res = await login(form.value)
-  if (res.code === 200) {
-    localStorage.setItem('token', res.data.token)
-    router.push('/verify')
-  } else {
-    ElMessage.error(res.message)
+  try {
+    const res = await login(form.value)
+    // 能走到这里说明 http 状态是 2xx
+    if (res.code === 200) {
+      localStorage.setItem('token', res.data.token)
+      router.push('/verify')
+    } else {
+      // 后端提示账号密码错，但 http 仍是 200
+      ElMessage.error(res.message || '账号密码错误')
+    }
+  } catch (error) {
+    const msg = error.response?.data?.message || error.message || '网络异常'
+    ElMessage.error(msg)
   }
 }
 

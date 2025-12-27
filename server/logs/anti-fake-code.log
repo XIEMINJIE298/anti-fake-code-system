@@ -123,3 +123,19 @@
 2025-12-27T13:34:45.946+08:00  INFO 33092 --- [server] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
 2025-12-27T13:40:14.856+08:00  INFO 33092 --- [server] [SpringApplicationShutdownHook] o.s.b.w.e.tomcat.GracefulShutdown        : Commencing graceful shutdown. Waiting for active requests to complete
 2025-12-27T13:40:14.861+08:00  INFO 33092 --- [server] [tomcat-shutdown] o.s.b.w.e.tomcat.GracefulShutdown        : Graceful shutdown complete
+2025-12-27T13:40:17.706+08:00  INFO 7288 --- [server] [main] com.xieminjie.ServerApplication          : Starting ServerApplication using Java 21.0.9 with PID 7288 (C:\Users\29856\Desktop\anti-fake-code-system\server\target\classes started by 29856 in C:\Users\29856\Desktop\anti-fake-code-system\server)
+2025-12-27T13:40:17.707+08:00  INFO 7288 --- [server] [main] com.xieminjie.ServerApplication          : No active profile set, falling back to 1 default profile: "default"
+2025-12-27T13:40:18.537+08:00  INFO 7288 --- [server] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2025-12-27T13:40:18.548+08:00  INFO 7288 --- [server] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-12-27T13:40:18.549+08:00  INFO 7288 --- [server] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.50]
+2025-12-27T13:40:18.591+08:00  INFO 7288 --- [server] [main] o.a.c.c.C.[Tomcat].[localhost].[/api]    : Initializing Spring embedded WebApplicationContext
+2025-12-27T13:40:18.592+08:00  INFO 7288 --- [server] [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 854 ms
+2025-12-27T13:40:19.010+08:00  INFO 7288 --- [server] [main] r$InitializeUserDetailsManagerConfigurer : Global AuthenticationManager configured with UserDetailsService bean with name userDetailsServiceImpl
+2025-12-27T13:40:19.222+08:00  INFO 7288 --- [server] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path '/api'
+2025-12-27T13:40:19.228+08:00  INFO 7288 --- [server] [main] com.xieminjie.ServerApplication          : Started ServerApplication in 1.913 seconds (process running for 2.411)
+2025-12-27T13:40:33.798+08:00  INFO 7288 --- [server] [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/api]    : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-12-27T13:40:33.798+08:00  INFO 7288 --- [server] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2025-12-27T13:40:33.800+08:00  INFO 7288 --- [server] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2025-12-27T13:41:13.858+08:00  INFO 7288 --- [server] [http-nio-8080-exec-6] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2025-12-27T13:41:13.994+08:00  INFO 7288 --- [server] [http-nio-8080-exec-6] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@11d547c
+2025-12-27T13:41:13.995+08:00  INFO 7288 --- [server] [http-nio-8080-exec-6] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
