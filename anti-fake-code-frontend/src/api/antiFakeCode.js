@@ -27,7 +27,9 @@ export const checkCaptcha = (data) => {
 
 
 // 获取图形验证码
+// antiFakeCode.js
+// antiFakeCode.js
 export const getCaptcha = (data) => {
   const uuid = data.uuid || 'default-uuid';
-  return `/captcha/image?uuid=${uuid}`;
+  return `/api/captcha/image?uuid=${uuid}`;   // 加 /api
 };

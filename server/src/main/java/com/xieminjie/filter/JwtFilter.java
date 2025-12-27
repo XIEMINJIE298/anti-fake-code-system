@@ -21,7 +21,9 @@ public class JwtFilter extends OncePerRequestFilter {
 
     private final String[] WHITE = {
             "/api/auth/login",     // 添加登录路径
-            "/api/auth/register"
+            "/api/auth/register",
+            "/api/captcha/image",
+            "/api/captcha/check"
     };
     private final JwtUtil jwtUtil;
 
@@ -32,7 +34,15 @@ public class JwtFilter extends OncePerRequestFilter {
     @Override
     protected void doFilterInternal(HttpServletRequest req, HttpServletResponse res, FilterChain chain)
             throws ServletException, IOException {
+        // 预检请求直接放过
+        if ("OPTIONS".equalsIgnoreCase(req.getMethod())) {
+            chain.doFilter(req, res);
+            return;
+        }
         String token = req.getHeader("Authorization");
+        if (token == null || !token.startsWith("Bearer ")) {
+            token = req.getParameter("token");
+        }
         if (token != null && token.startsWith("Bearer ")) token = token.substring(7);
         if (Arrays.stream(WHITE).anyMatch(req.getRequestURI()::equals) ||
                 (token != null && jwtUtil.validate(token))) {

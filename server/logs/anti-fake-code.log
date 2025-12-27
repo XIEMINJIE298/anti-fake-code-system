@@ -46,3 +46,80 @@
 2025-12-27T01:52:19.728+08:00  INFO 27260 --- [server] [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/api]    : Initializing Spring DispatcherServlet 'dispatcherServlet'
 2025-12-27T01:52:19.729+08:00  INFO 27260 --- [server] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
 2025-12-27T01:52:19.731+08:00  INFO 27260 --- [server] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2025-12-27T12:52:36.038+08:00  INFO 27520 --- [server] [main] com.xieminjie.ServerApplication          : Starting ServerApplication using Java 21.0.9 with PID 27520 (C:\Users\29856\Desktop\anti-fake-code-system\server\target\classes started by 29856 in C:\Users\29856\Desktop\anti-fake-code-system\server)
+2025-12-27T12:52:36.039+08:00  INFO 27520 --- [server] [main] com.xieminjie.ServerApplication          : No active profile set, falling back to 1 default profile: "default"
+2025-12-27T12:52:36.963+08:00  INFO 27520 --- [server] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2025-12-27T12:52:36.975+08:00  INFO 27520 --- [server] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-12-27T12:52:36.975+08:00  INFO 27520 --- [server] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.50]
+2025-12-27T12:52:37.020+08:00  INFO 27520 --- [server] [main] o.a.c.c.C.[Tomcat].[localhost].[/api]    : Initializing Spring embedded WebApplicationContext
+2025-12-27T12:52:37.021+08:00  INFO 27520 --- [server] [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 947 ms
+2025-12-27T12:52:37.498+08:00  INFO 27520 --- [server] [main] r$InitializeUserDetailsManagerConfigurer : Global AuthenticationManager configured with UserDetailsService bean with name userDetailsServiceImpl
+2025-12-27T12:52:37.730+08:00  INFO 27520 --- [server] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path '/api'
+2025-12-27T12:52:37.737+08:00  INFO 27520 --- [server] [main] com.xieminjie.ServerApplication          : Started ServerApplication in 2.126 seconds (process running for 2.795)
+2025-12-27T12:52:59.985+08:00  INFO 27520 --- [server] [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/api]    : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-12-27T12:52:59.986+08:00  INFO 27520 --- [server] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2025-12-27T12:52:59.987+08:00  INFO 27520 --- [server] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 0 ms
+2025-12-27T12:53:00.152+08:00  INFO 27520 --- [server] [http-nio-8080-exec-1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2025-12-27T12:53:00.283+08:00  INFO 27520 --- [server] [http-nio-8080-exec-1] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@64f41ad5
+2025-12-27T12:53:00.285+08:00  INFO 27520 --- [server] [http-nio-8080-exec-1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2025-12-27T13:24:58.549+08:00  INFO 27520 --- [server] [SpringApplicationShutdownHook] o.s.b.w.e.tomcat.GracefulShutdown        : Commencing graceful shutdown. Waiting for active requests to complete
+2025-12-27T13:24:58.554+08:00  INFO 27520 --- [server] [tomcat-shutdown] o.s.b.w.e.tomcat.GracefulShutdown        : Graceful shutdown complete
+2025-12-27T13:24:58.558+08:00  INFO 27520 --- [server] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2025-12-27T13:24:58.561+08:00  INFO 27520 --- [server] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2025-12-27T13:25:01.739+08:00  INFO 34112 --- [server] [main] com.xieminjie.ServerApplication          : Starting ServerApplication using Java 21.0.9 with PID 34112 (C:\Users\29856\Desktop\anti-fake-code-system\server\target\classes started by 29856 in C:\Users\29856\Desktop\anti-fake-code-system\server)
+2025-12-27T13:25:01.740+08:00  INFO 34112 --- [server] [main] com.xieminjie.ServerApplication          : No active profile set, falling back to 1 default profile: "default"
+2025-12-27T13:25:02.559+08:00  INFO 34112 --- [server] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2025-12-27T13:25:02.570+08:00  INFO 34112 --- [server] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-12-27T13:25:02.570+08:00  INFO 34112 --- [server] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.50]
+2025-12-27T13:25:02.613+08:00  INFO 34112 --- [server] [main] o.a.c.c.C.[Tomcat].[localhost].[/api]    : Initializing Spring embedded WebApplicationContext
+2025-12-27T13:25:02.614+08:00  INFO 34112 --- [server] [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 845 ms
+2025-12-27T13:25:03.038+08:00  INFO 34112 --- [server] [main] r$InitializeUserDetailsManagerConfigurer : Global AuthenticationManager configured with UserDetailsService bean with name userDetailsServiceImpl
+2025-12-27T13:25:03.255+08:00  INFO 34112 --- [server] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path '/api'
+2025-12-27T13:25:03.261+08:00  INFO 34112 --- [server] [main] com.xieminjie.ServerApplication          : Started ServerApplication in 1.928 seconds (process running for 2.432)
+2025-12-27T13:28:21.422+08:00  INFO 34112 --- [server] [SpringApplicationShutdownHook] o.s.b.w.e.tomcat.GracefulShutdown        : Commencing graceful shutdown. Waiting for active requests to complete
+2025-12-27T13:28:21.426+08:00  INFO 34112 --- [server] [tomcat-shutdown] o.s.b.w.e.tomcat.GracefulShutdown        : Graceful shutdown complete
+2025-12-27T13:28:24.373+08:00  INFO 18492 --- [server] [main] com.xieminjie.ServerApplication          : Starting ServerApplication using Java 21.0.9 with PID 18492 (C:\Users\29856\Desktop\anti-fake-code-system\server\target\classes started by 29856 in C:\Users\29856\Desktop\anti-fake-code-system\server)
+2025-12-27T13:28:24.374+08:00  INFO 18492 --- [server] [main] com.xieminjie.ServerApplication          : No active profile set, falling back to 1 default profile: "default"
+2025-12-27T13:28:25.226+08:00  INFO 18492 --- [server] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2025-12-27T13:28:25.236+08:00  INFO 18492 --- [server] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-12-27T13:28:25.237+08:00  INFO 18492 --- [server] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.50]
+2025-12-27T13:28:25.285+08:00  INFO 18492 --- [server] [main] o.a.c.c.C.[Tomcat].[localhost].[/api]    : Initializing Spring embedded WebApplicationContext
+2025-12-27T13:28:25.285+08:00  INFO 18492 --- [server] [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 881 ms
+2025-12-27T13:28:25.722+08:00  INFO 18492 --- [server] [main] r$InitializeUserDetailsManagerConfigurer : Global AuthenticationManager configured with UserDetailsService bean with name userDetailsServiceImpl
+2025-12-27T13:28:25.950+08:00  INFO 18492 --- [server] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path '/api'
+2025-12-27T13:28:25.956+08:00  INFO 18492 --- [server] [main] com.xieminjie.ServerApplication          : Started ServerApplication in 1.973 seconds (process running for 2.53)
+2025-12-27T13:32:47.536+08:00  INFO 18492 --- [server] [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/api]    : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-12-27T13:32:47.537+08:00  INFO 18492 --- [server] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2025-12-27T13:32:47.538+08:00  INFO 18492 --- [server] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2025-12-27T13:33:30.120+08:00  INFO 18492 --- [server] [SpringApplicationShutdownHook] o.s.b.w.e.tomcat.GracefulShutdown        : Commencing graceful shutdown. Waiting for active requests to complete
+2025-12-27T13:33:30.125+08:00  INFO 18492 --- [server] [tomcat-shutdown] o.s.b.w.e.tomcat.GracefulShutdown        : Graceful shutdown complete
+2025-12-27T13:33:33.090+08:00  INFO 29468 --- [server] [main] com.xieminjie.ServerApplication          : Starting ServerApplication using Java 21.0.9 with PID 29468 (C:\Users\29856\Desktop\anti-fake-code-system\server\target\classes started by 29856 in C:\Users\29856\Desktop\anti-fake-code-system\server)
+2025-12-27T13:33:33.092+08:00  INFO 29468 --- [server] [main] com.xieminjie.ServerApplication          : No active profile set, falling back to 1 default profile: "default"
+2025-12-27T13:33:33.923+08:00  INFO 29468 --- [server] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2025-12-27T13:33:33.934+08:00  INFO 29468 --- [server] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-12-27T13:33:33.935+08:00  INFO 29468 --- [server] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.50]
+2025-12-27T13:33:33.979+08:00  INFO 29468 --- [server] [main] o.a.c.c.C.[Tomcat].[localhost].[/api]    : Initializing Spring embedded WebApplicationContext
+2025-12-27T13:33:33.979+08:00  INFO 29468 --- [server] [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 858 ms
+2025-12-27T13:33:34.408+08:00  INFO 29468 --- [server] [main] r$InitializeUserDetailsManagerConfigurer : Global AuthenticationManager configured with UserDetailsService bean with name userDetailsServiceImpl
+2025-12-27T13:33:34.624+08:00  INFO 29468 --- [server] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path '/api'
+2025-12-27T13:33:34.630+08:00  INFO 29468 --- [server] [main] com.xieminjie.ServerApplication          : Started ServerApplication in 1.935 seconds (process running for 2.434)
+2025-12-27T13:33:51.231+08:00  INFO 29468 --- [server] [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/api]    : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-12-27T13:33:51.232+08:00  INFO 29468 --- [server] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2025-12-27T13:33:51.233+08:00  INFO 29468 --- [server] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2025-12-27T13:34:36.947+08:00  INFO 29468 --- [server] [SpringApplicationShutdownHook] o.s.b.w.e.tomcat.GracefulShutdown        : Commencing graceful shutdown. Waiting for active requests to complete
+2025-12-27T13:34:36.951+08:00  INFO 29468 --- [server] [tomcat-shutdown] o.s.b.w.e.tomcat.GracefulShutdown        : Graceful shutdown complete
+2025-12-27T13:34:39.843+08:00  INFO 33092 --- [server] [main] com.xieminjie.ServerApplication          : Starting ServerApplication using Java 21.0.9 with PID 33092 (C:\Users\29856\Desktop\anti-fake-code-system\server\target\classes started by 29856 in C:\Users\29856\Desktop\anti-fake-code-system\server)
+2025-12-27T13:34:39.844+08:00  INFO 33092 --- [server] [main] com.xieminjie.ServerApplication          : No active profile set, falling back to 1 default profile: "default"
+2025-12-27T13:34:40.673+08:00  INFO 33092 --- [server] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2025-12-27T13:34:40.684+08:00  INFO 33092 --- [server] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-12-27T13:34:40.685+08:00  INFO 33092 --- [server] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.50]
+2025-12-27T13:34:40.728+08:00  INFO 33092 --- [server] [main] o.a.c.c.C.[Tomcat].[localhost].[/api]    : Initializing Spring embedded WebApplicationContext
+2025-12-27T13:34:40.729+08:00  INFO 33092 --- [server] [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 854 ms
+2025-12-27T13:34:41.151+08:00  INFO 33092 --- [server] [main] r$InitializeUserDetailsManagerConfigurer : Global AuthenticationManager configured with UserDetailsService bean with name userDetailsServiceImpl
+2025-12-27T13:34:41.375+08:00  INFO 33092 --- [server] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path '/api'
+2025-12-27T13:34:41.382+08:00  INFO 33092 --- [server] [main] com.xieminjie.ServerApplication          : Started ServerApplication in 1.945 seconds (process running for 2.452)
+2025-12-27T13:34:45.945+08:00  INFO 33092 --- [server] [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/api]    : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-12-27T13:34:45.945+08:00  INFO 33092 --- [server] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2025-12-27T13:34:45.946+08:00  INFO 33092 --- [server] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2025-12-27T13:40:14.856+08:00  INFO 33092 --- [server] [SpringApplicationShutdownHook] o.s.b.w.e.tomcat.GracefulShutdown        : Commencing graceful shutdown. Waiting for active requests to complete
+2025-12-27T13:40:14.861+08:00  INFO 33092 --- [server] [tomcat-shutdown] o.s.b.w.e.tomcat.GracefulShutdown        : Graceful shutdown complete
