@@ -1,5 +1,10 @@
 <template>
   <div class="login-container">
+    <!-- 左上角返回按钮 -->
+    <div class="back-btn">
+      <el-button type="info" :icon="ArrowLeft" circle @click="goBack" />
+    </div>
+
     <div class="login-form">
       <h2>用户登录</h2>
       <el-form :model="form" @submit.prevent="doLogin">
@@ -15,8 +20,7 @@
           </el-button>
         </el-form-item>
       </el-form>
-      
-      <!-- 新增注册链接 -->
+
       <div class="register-link">
         <el-button type="text" @click="goToRegister">
           没有账号？立即注册
@@ -31,6 +35,7 @@ import { ref } from 'vue'
 import { useRouter } from 'vue-router'
 import { login } from '@/api/auth'
 import { ElMessage } from 'element-plus'
+import { ArrowLeft } from '@element-plus/icons-vue'   // ① 引入图标
 
 const router = useRouter()
 const form = ref({ username: '', password: '' })
@@ -38,13 +43,16 @@ const form = ref({ username: '', password: '' })
 const doLogin = async () => {
   try {
     const res = await login(form.value)
-    // 能走到这里说明 http 状态是 2xx
     if (res.code === 200) {
       localStorage.setItem('token', res.data.token)
       localStorage.setItem('role', res.data.role)
-      router.push('/verify')
+      // LoginView.vue 里
+      if (res.code === 200) {
+        localStorage.setItem('token', res.data.token)
+        localStorage.setItem('role', res.data.role)
+        router.replace('/verify')
+      }
     } else {
-      // 后端提示账号密码错，但 http 仍是 200
       ElMessage.error(res.message || '账号密码错误')
     }
   } catch (error) {
@@ -53,18 +61,26 @@ const doLogin = async () => {
   }
 }
 
-// 新增：跳转到注册页面
-const goToRegister = () => {
-  router.push('/register')
-}
+const goToRegister = () => router.push('/register')
+
+// ② 返回首页
+const goBack = () => router.push('/verify')
 </script>
 
 <style scoped>
 .login-container {
+  position: relative;
+  /* 让内部绝对定位参考这里 */
   display: flex;
   justify-content: center;
   align-items: center;
   min-height: 100vh;
+}
+
+.back-btn {
+  position: absolute;
+  top: 24px;
+  left: 24px;
 }
 
 .login-form {

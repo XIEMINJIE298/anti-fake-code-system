@@ -1,34 +1,22 @@
 <template>
   <div id="app">
-    <!-- 根据路由meta信息决定是否显示头部 -->
     <el-header v-if="!$route.meta.hideHeader">
-      <!-- App.vue 的 el-header 内部，el-menu 结束位置 -->
       <el-menu mode="horizontal" router class="menu" :ellipsis="false">
-        <el-menu-item index="/upload" v-if="role === 'admin'">
-          <el-icon>
-            <Upload />
-          </el-icon>
-          生成防伪码
-        </el-menu-item>
-        <el-menu-item index="/verify">
-          <el-icon>
-            <Search />
-          </el-icon>
-          验证防伪码
+        <!-- 未登录：左上角显示「管理员登录」 -->
+        <el-menu-item v-if="!token" index="/login" @click="$router.push('/login')">
+          <el-icon><Avatar /></el-icon>
+          管理员登录
         </el-menu-item>
 
-        <!-- 右侧退出 -->
         <div class="flex-grow" />
-        <el-sub-menu index="user">
+
+        <!-- 已登录：右上角显示用户名 + 退出 -->
+        <el-sub-menu v-if="token" index="user">
           <template #title>
-            <el-icon>
-              <Avatar />
-            </el-icon>
+            <el-icon><Avatar /></el-icon>
             {{ username }}
           </template>
-          <el-menu-item index="logout" @click="handleLogout">
-            退出登录
-          </el-menu-item>
+          <el-menu-item index="logout" @click="handleLogout">退出登录</el-menu-item>
         </el-sub-menu>
       </el-menu>
     </el-header>
@@ -40,26 +28,36 @@
 </template>
 
 <script setup>
-import { useAuth } from '@/composables/useAuth'
+import { ref, onMounted, watch } from 'vue'
 import { useRouter } from 'vue-router'
 import { ElMessage } from 'element-plus'
-import { computed } from 'vue'
-import { Upload, Search, Avatar } from '@element-plus/icons-vue'
+import { Avatar } from '@element-plus/icons-vue'
 
 const router = useRouter()
 
-/* 读本地数据 */
-const token  = localStorage.getItem('token')
-const role = computed(() => localStorage.getItem('role'))
-const username = computed(() => localStorage.getItem('username') || '用户')
+/* 响应式状态 */
+const token   = ref('')
+const role    = ref('')
+const username = ref('用户')
 
-/* 退出函数 */
-const handleLogout = () => {
-  localStorage.clear()
-  ElMessage.success('已退出登录')
-  router.replace('/login')      // 跳登录页（不留历史）
+/* 读 localStorage 并刷新状态 */
+function refreshAuth() {
+  token.value   = localStorage.getItem('token') || ''
+  role.value    = localStorage.getItem('role') || ''
+  username.value = localStorage.getItem('username') || '用户'
 }
-const { isAdmin } = useAuth()
+
+/* 退出 */
+function handleLogout() {
+  localStorage.clear()
+  refreshAuth()
+  ElMessage.success('已退出登录')
+  router.replace('/verify')
+}
+
+/* 首次加载 + 路由变化时刷新 */
+onMounted(refreshAuth)
+router.afterEach(refreshAuth)
 </script>
 
 <style>
@@ -73,10 +71,17 @@ const { isAdmin } = useAuth()
   padding: 0;
 }
 
+.login-button {
+  margin-left: 20px;
+}
+
 .menu {
   border-bottom: none;
   max-width: 1200px;
   margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 
 .el-main {
@@ -91,6 +96,8 @@ const { isAdmin } = useAuth()
   align-items: center;
   justify-content: center;
 }
-/* App.vue <style> 里加一行 */
-.flex-grow { flex: 1; }
+
+.flex-grow {
+  flex: 1;
+}
 </style>

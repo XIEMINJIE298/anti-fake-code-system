@@ -8,7 +8,7 @@ import { ElMessage } from 'element-plus'
 const routes = [
   {
     path: '/',
-    redirect: '/login'
+    redirect: '/verify' // 默认跳转到verify页面
   },
   {
     path: '/login',
@@ -25,17 +25,28 @@ const routes = [
     component: RegisterView,
     meta: {
       hideHeader: true,
-      title: '注册'   // 添加这个meta字段，隐藏导航栏
+      title: '注册'
     }
   },
+  // 把原来的 /upload 路由改成一个“布局”路由，真实页面放在 /admin/upload
   {
-    path: '/upload',
-    name: 'Upload',
-    component: UploadView,
-    meta: {
-      requiresRole: 'admin',
-      title: '上传文件'
-    }   // ← 只有 admin 能进
+    path: '/admin',
+    name: 'AdminLayout',
+    component: () => import('@/views/AdminLayout.vue'), // 新建的布局壳
+    redirect: '/admin/upload',
+    meta: { requiresRole: 'admin' },
+    children: [
+      {
+        path: 'upload',
+        name: 'AdminUpload',
+        component: () => import('@/views/UploadView.vue')
+      },
+      {
+        path: 'stats',
+        name: 'AdminStats',
+        component: () => import('@/views/StatsPlaceholder.vue') // 先空壳
+      }
+    ]
   },
   {
     path: '/verify',
@@ -44,7 +55,7 @@ const routes = [
     meta: {
       requiresRole: null,
       title: 'XMJ验码工具'
-    }      // ← 所有人都能进
+    }
   }
 ]
 
@@ -56,21 +67,9 @@ const router = createRouter({
 /* ---------- 权限守卫 ---------- */
 router.beforeEach((to, from, next) => {
   const token = localStorage.getItem('token')
-  const role = localStorage.getItem('role')
 
   /* 1. 动态设置页签标题 */
-  document.title = to.meta.title || 'XMJ验码工具'   // 默认标题
-  
-  // 1. 未登录且目标不是登录/注册
-  if (!token && !['/login', '/register'].includes(to.path)) {
-    return next('/login')
-  }
-
-  // 2. 需要管理员但角色不符
-  if (to.meta.requiresRole === 'admin' && role !== 'admin') {
-    ElMessage.warning('权限不足')
-    return next('/verify')
-  }
+  document.title = to.meta.title || 'XMJ验码工具'
 
   next()
 })

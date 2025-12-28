@@ -20,10 +20,11 @@ import java.util.Arrays;
 public class JwtFilter extends OncePerRequestFilter {
 
     private final String[] WHITE = {
-            "/api/auth/login",     // 添加登录路径
+            "/api/auth/login",
             "/api/auth/register",
             "/api/captcha/image",
-            "/api/captcha/check"
+            "/api/captcha/check",
+            "/api/verify"
     };
     private final JwtUtil jwtUtil;
 
